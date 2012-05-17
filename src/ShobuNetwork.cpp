@@ -138,9 +138,8 @@ void ShobuNetwork::networkUpdate()
                     m_remote_input_buffer[i] = input;
                 }
                 unlock();
-                std::cout << "Got tick " << m_remote_tick << " , Current tick is " << m_local_tick << std::endl;
             } else {
-                std::cout << "Old remote tick sent " << std::endl;
+                std::cout << "Received old remote tick" << std::endl;
             }
 
         }
@@ -148,13 +147,13 @@ void ShobuNetwork::networkUpdate()
 
         break;
     case 'd':
-        m_connected = false;
+	disconnect();
         break;
     case 'r':
         // Get the request frame
         //memcpy(&requested_frame,&net_buffer[1], 4);
         // Send the requested frame
-        std::cout << "Received request for input buffer from remote client.  Sending..." << std::endl;
+        std::cout << "Received request for input state from remote client.  Sending..." << std::endl;
         sendInput();
         break;
     default:
