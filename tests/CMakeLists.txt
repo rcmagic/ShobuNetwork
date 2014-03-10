@@ -1,0 +1,10 @@
+project(ShobuNetworkTest)
+cmake_minimum_required(VERSION 2.8)
+aux_source_directory(. SRC_LIST)
+SET(CMAKE_CXX_FLAGS "-std=c++0x -static-libgcc -static-libstdc++ -static")
+add_definitions(-DWIN32)
+add_library(ShobuNetwork "../src/Network.cpp" "../src/NetworkLogger.cpp")
+include_directories("../src/")
+
+add_executable(ShobuNetworkTest test.cpp)
+target_link_libraries(ShobuNetworkTest ShobuNetwork ws2_32)
